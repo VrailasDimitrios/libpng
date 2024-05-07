@@ -1,6 +1,6 @@
 name: Fuzzing Pipeline
 
-on: [ push ]
+on: [push]
 
 jobs:
   build_and_fuzz:
@@ -26,6 +26,7 @@ jobs:
           context: .
           push: true
           tags: ghcr.io/${{ github.repository | toLower }}:${{ github.sha }}, ghcr.io/${{ github.repository | toLower }}:latest
+
       - name: Run Docker image and start fuzzing
         run: |
           docker run -d --name fuzzing_container ghcr.io/${{ github.repository }}:latest
