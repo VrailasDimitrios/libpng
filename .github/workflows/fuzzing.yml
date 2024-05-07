@@ -36,10 +36,9 @@ jobs:
           docker run -d --name fuzzing_container ghcr.io/${{ steps.repo-name.outputs.lowercase }}:latest
           sleep 300
           docker stop fuzzing_container
-
-          - name: Check fuzzing output in Docker container
-            run: docker exec fuzzing_container ls -la /fuzzing_output/
-          
+      - name: Check fuzzing output in Docker container
+        run: docker exec fuzzing_container ls -la /fuzzing_output/
+        
       - name: Copy fuzzing output from Docker container
         run: docker cp fuzzing_container:/fuzzing_output/ ./fuzzing_output
 
