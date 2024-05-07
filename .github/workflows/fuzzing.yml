@@ -33,7 +33,7 @@ jobs:
 
       - name: Run Docker image and start fuzzing
         run: |
-          docker run -d --name fuzzing_container ghcr.io/${{ github.repository }}:latest
+          docker run -d --name fuzzing_container ghcr.io/${{ steps.repo-name.outputs.lowercase }}:latest
           sleep 300
           docker stop fuzzing_container
 
