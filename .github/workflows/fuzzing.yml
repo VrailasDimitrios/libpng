@@ -37,12 +37,15 @@ jobs:
           sleep 300
           docker stop fuzzing_container
 
+          - name: Check fuzzing output in Docker container
+            run: docker exec fuzzing_container ls -la /fuzzing_output/
+          
       - name: Copy fuzzing output from Docker container
         run: docker cp fuzzing_container:/fuzzing_output/ ./fuzzing_output
-        
+
       - name: List contents of fuzzing_output directory
         run: ls -la ./fuzzing_output
-        
+
       - name: Archive fuzzing output
         uses: actions/upload-artifact@v2
         with:
