@@ -29,7 +29,7 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
- - name: Build and push the target image
+   - name: Build and push the target image
       id: push
       uses: docker/build-push-action@v5
       with:
@@ -51,8 +51,7 @@ jobs:
     - name: Compress test cases
       run: tar -czf ${{ github.workspace }}/libpng-testcases.tar.gz -C ${{ github.workspace }} libpng-testcases
 
-
-        - name: Upload test cases as an artifact
+    - name: Upload test cases as an artifact
       uses: actions/upload-artifact@v2
       with:
       name: fuzzing_output.tar.gz
